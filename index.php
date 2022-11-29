@@ -12,7 +12,7 @@ include __DIR__ . "./functions.php";
     <title> password generator </title>
 
     <!-- link bootstrap  -->
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.4.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
 
 </head>
 
@@ -45,14 +45,57 @@ include __DIR__ . "./functions.php";
 
         <form action="index.php" method="get">
 
-            <div class="row">
+            <div class="row gy-5">
 
-                <div class="col-6">
+                <div class="col-6 text-start">
                     <label for="length">Inserisci la lunghezza desiderata per la tua password: </label>
                 </div>
 
                 <div class="col-6">
                     <input type="text" id="length" name="length">
+                </div>
+
+                <div class="col-6 text-start">
+                    <label for="repetition">Consenti caratteri ripetuti:</label>
+                </div>
+
+                <div class="col-6">
+
+                    <div class="repetition">
+
+                        <label for="yes">Sì</label>
+                        <input type="radio" name="option" id="yes" value="yes">
+
+                        <label for="no">No</label>
+                        <input type="radio" name="option" id="no" value="no">
+
+                    </div>
+
+                    <div class="checkboxes">
+
+                        <div class="box d-flex justify-content-center">
+
+                            <label class="col-4" for="letters">Lettere</label>
+                            <input type="checkbox" name="letters" id="letters">
+
+                        </div>
+
+                        <div class="box d-flex justify-content-center">
+
+                            <label class="col-4" for="numbers">Numeri</label>
+                            <input type="checkbox" name="numbers" id="numbers">
+
+                        </div>
+
+                        <div class="box d-flex justify-content-center">
+
+                            <label class="col-4" for="special_characters">Caratteri speciali</label>
+                            <input type="checkbox" name="special_characters" id="special_characters">
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -73,7 +116,7 @@ include __DIR__ . "./functions.php";
 
 
     <!-- script bootstrap -->
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.4.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
 
 </body>
 
