@@ -29,16 +29,16 @@ include __DIR__ . "./functions.php";
                 <p>Nessun parametro valido inserito</p>
             </div>
 
-        <?php elseif (isset($_GET['length']) && is_numeric($_GET['length'])) : ?>
+        <?php elseif (isset($_GET['length']) && is_numeric($_GET['length']) && isset($_GET['option']) && isset($_GET['letters']) && isset($_GET['numbers']) && isset($_GET['special_characters'])) : ?>
 
             <div class="p-5">
-                <p>La password per te generata è: <?php echo password_generate($_GET['length']) . "\n" ?></p>
+                <p>La password per te generata è: <?php echo password_generate($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters']) . "\n" ?></p>
             </div>
 
         <?php else : ?>
 
             <div class="p-5">
-                <p><?php echo password_generate($_GET['length']) . "\n"  ?></p>
+                <p><?php echo password_generate($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters']) . "\n"  ?></p>
             </div>
 
         <?php endif ?>
@@ -64,10 +64,10 @@ include __DIR__ . "./functions.php";
                     <div class="repetition">
 
                         <label for="yes">Sì</label>
-                        <input type="radio" name="option" id="yes" value="yes">
+                        <input type="radio" name="option" id="yes" value="true">
 
                         <label for="no">No</label>
-                        <input type="radio" name="option" id="no" value="no">
+                        <input type="radio" name="option" id="no" value="false">
 
                     </div>
 
