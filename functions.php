@@ -13,7 +13,7 @@ function password_generate($chars, $repetitions, $letters, $numbers, $specials)
             array_rand($lowercase) .
             array_rand($uppercase) .
             array_rand($special) .
-            implode(array_rand($combined, rand(4, $chars))));
+            implode(array_rand($combined, $chars - 4)));
 
         return $password;
     } else {
