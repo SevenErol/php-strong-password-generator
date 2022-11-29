@@ -1,10 +1,17 @@
 <?php
 function password_generate($chars)
 {
-    $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-    return substr(str_shuffle($data), 0, $chars);
+    if (is_numeric($chars)) {
+
+        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+        return substr(str_shuffle($data), 0, $chars);
+    } else {
+
+        $error = 'Attenzione! Devi inserire un numero';
+
+        return $error;
+    }
 }
-echo password_generate(7) . "\n";
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +41,18 @@ echo password_generate(7) . "\n";
                 <p>Nessun parametro valido inserito</p>
             </div>
 
+        <?php elseif (isset($_GET['length']) && is_numeric($_GET['length'])) : ?>
+
+            <div class="p-5">
+                <p>La password per te generata è: <?php echo password_generate($_GET['length']) . "\n" ?></p>
+            </div>
+
+        <?php else : ?>
+
+            <div class="p-5">
+                <p><?php echo password_generate($_GET['length']) . "\n"  ?></p>
+            </div>
+
         <?php endif ?>
 
         <form action="index.php" method="get">
@@ -41,7 +60,7 @@ echo password_generate(7) . "\n";
             <div class="row">
 
                 <div class="col-6">
-                    <label for="length">Inserisci la lunghezza desiderata: </label>
+                    <label for="length">Inserisci la lunghezza desiderata per la tua password: </label>
                 </div>
 
                 <div class="col-6">
@@ -49,6 +68,16 @@ echo password_generate(7) . "\n";
                 </div>
 
             </div>
+
+            <div class="buttons p-5">
+
+                <button type="submit" class="btn btn-primary">Invia richiesta</button>
+
+                <button type="reset" class="btn btn-secondary">Annulla</button>
+
+            </div>
+
+
 
         </form>
 
