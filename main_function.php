@@ -1,4 +1,13 @@
 <?php
+
+require __DIR__ . "./characters_generator.php";
+
+require __DIR__ . "./combined_array_generator.php";
+
+require __DIR__ . "./password_repetition.php";
+
+require __DIR__ . "./password_no_repetitions.php";
+
 function password_check($chars, $repetitions, $letters, $numbers, $specials)
 {
     if (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters && $numbers && $specials) {
@@ -22,17 +31,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['digits'], $characters['lowercase'], $characters['uppercase'], $characters['special']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '1' && $numbers === '0' && $specials === '0') {
 
         $password = '';
@@ -41,14 +40,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $chars < 53 && $repetitions === 'false' && $letters === '1' && $numbers === '0' && $specials === '0') {
 
         $password = '';
@@ -57,17 +49,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '0' && $numbers === '1' && $specials === '0') {
 
         $password = '';
@@ -76,14 +58,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = $characters['digits'];
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $chars <= 10 && $repetitions === 'false' && $letters === '0' && $numbers === '1' && $specials === '0') {
 
         $password = '';
@@ -92,17 +67,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = $characters['digits'];
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '0' && $numbers === '0' && $specials === '1') {
 
         $password = '';
@@ -111,14 +76,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = $characters['special'];
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $chars <= 28 && $repetitions === 'false' && $letters === '0' && $numbers === '0' && $specials === '1') {
 
         $password = '';
@@ -127,17 +85,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = $characters['special'];
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '1' && $numbers === '1' && $specials === '0') {
 
         $password = '';
@@ -146,14 +94,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase'], $characters['digits']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'false' && $letters === '1' && $numbers === '1' && $specials === '0') {
 
         $password = '';
@@ -162,17 +103,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase'], $characters['digits']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '1' && $numbers === '0' && $specials === '1') {
 
         $password = '';
@@ -181,14 +112,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase'], $characters['special']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'false' && $letters === '1' && $numbers === '0' && $specials === '1') {
 
         $password = '';
@@ -197,17 +121,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['lowercase'], $characters['uppercase'], $characters['special']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'true' && $letters === '0' && $numbers === '1' && $specials === '1') {
 
         $password = '';
@@ -216,14 +130,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['digits'], $characters['special']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            $password .= $singleCharacter;
-        };
-
-        return $password;
+        return password_repetition($combined, $password, $chars);
     } elseif (is_numeric($chars) && $chars > 3 && $repetitions === 'false' && $letters === '0' && $numbers === '1' && $specials === '1') {
 
         $password = '';
@@ -232,17 +139,7 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
 
         $combined = combination($characters['digits'], $characters['special']);
 
-        while (strlen($password) < $chars) {
-
-            $singleCharacter = array_rand($combined);
-
-            if (!str_contains($password, $singleCharacter)) {
-
-                $password .= $singleCharacter;
-            }
-        };
-
-        return $password;
+        return password_no_repetition($combined, $password, $chars);
     } else {
 
         $error = 'Attenzione! Devi completare tutti i campi';
@@ -250,24 +147,3 @@ function password_check($chars, $repetitions, $letters, $numbers, $specials)
         return $error;
     }
 };
-
-function characters_generator()
-{
-
-    $characters = [
-        "digits" => array_flip(range('0', '9')),
-        "lowercase" => array_flip(range('a', 'z')),
-        "uppercase" => array_flip(range('A', 'Z')),
-        "special" => array_flip(str_split('!@#$%^&*()_+=-}{[}]\|;:<>?/'))
-    ];
-
-    return $characters;
-};
-
-function combination(...$params)
-{
-
-    $combined = array_merge(...$params);
-
-    return $combined;
-}

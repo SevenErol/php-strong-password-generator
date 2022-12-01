@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "./functions.php";
+require __DIR__ . "./main_function.php";
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ include __DIR__ . "./functions.php";
                 </div>
 
                 <div class="col-6">
-                    <input type="text" id="length" name="length">
+                    <input type="text" id="length" name="length" placeholder="min 3">
                 </div>
 
                 <div class="col-6 text-start">
