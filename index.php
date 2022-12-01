@@ -12,7 +12,7 @@ include __DIR__ . "./functions.php";
     <title> password generator </title>
 
     <!-- link bootstrap  -->
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.4.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous'>
 
 </head>
 
@@ -29,16 +29,16 @@ include __DIR__ . "./functions.php";
                 <p>Nessun parametro valido inserito</p>
             </div>
 
-        <?php elseif (isset($_GET['length']) && is_numeric($_GET['length']) && isset($_GET['option']) && isset($_GET['letters']) && isset($_GET['numbers']) && isset($_GET['special_characters'])) : ?>
+        <?php elseif (isset($_GET['length']) && is_numeric($_GET['length'])) : ?>
 
             <div class="p-5">
-                <p>La password per te generata è: <?php echo password_generate($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters']) . "\n" ?></p>
+                <p>La password per te generata è: <?php echo password_check($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters'])  ?></p>
             </div>
 
         <?php else : ?>
 
             <div class="p-5">
-                <p><?php echo password_generate($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters']) . "\n"  ?></p>
+                <p><?php echo password_check($_GET['length'], $_GET['option'], $_GET['letters'], $_GET['numbers'], $_GET['special_characters'])  ?></p>
             </div>
 
         <?php endif ?>
@@ -76,21 +76,24 @@ include __DIR__ . "./functions.php";
                         <div class="box d-flex justify-content-center">
 
                             <label class="col-4" for="letters">Lettere</label>
-                            <input type="checkbox" name="letters" id="letters">
+                            <input type="hidden" name="letters" id="letters" value="0">
+                            <input type="checkbox" name="letters" id="letters" value="1">
 
                         </div>
 
                         <div class="box d-flex justify-content-center">
 
                             <label class="col-4" for="numbers">Numeri</label>
-                            <input type="checkbox" name="numbers" id="numbers">
+                            <input type="hidden" name="numbers" id="numbers" value="0">
+                            <input type="checkbox" name="numbers" id="numbers" value="1">
 
                         </div>
 
                         <div class="box d-flex justify-content-center">
 
                             <label class="col-4" for="special_characters">Caratteri speciali</label>
-                            <input type="checkbox" name="special_characters" id="special_characters">
+                            <input type="hidden" name="special_characters" id="special_characters" value="0">
+                            <input type="checkbox" name="special_characters" id="special_characters" value="1">
 
                         </div>
 
@@ -118,6 +121,7 @@ include __DIR__ . "./functions.php";
     <!-- script bootstrap -->
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.4.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8' crossorigin='anonymous'></script>
 
+    <script src="./app.js"></script>
 </body>
 
 </html>
